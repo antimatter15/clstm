@@ -1,6 +1,7 @@
 # -*- Python -*-
 import os
 import distutils.sysconfig
+import sys
 
 def die(msg):
     sys.stderr.write("ERROR "+msg+"\n")
