@@ -103,6 +103,7 @@ int main(int argc, char **argv) {
     print("got", codec.size(), "classes");
 
     CLSTMOCR clstm;
+    clstm.target_height = int(getrenv("target_height", 48));
     clstm.createBidi(codec, getienv("nhidden", 100));
     clstm.setLearningRate(getdenv("rate", 1e-4), getdenv("momentum", 0.9));
     clstm.net->info("");
@@ -137,7 +138,7 @@ int main(int argc, char **argv) {
         }
         int sample = irandom() % fnames.size();
         if (trial > 0 && save_every > 0&&trial%save_every == 0) {
-            string fname = save_name+"-"+to_string(trial)+".h5";
+            string fname = save_name+"-"+to_string(trial)+".buf";
             clstm.save(fname);
         }
         string fname = fnames[sample];
